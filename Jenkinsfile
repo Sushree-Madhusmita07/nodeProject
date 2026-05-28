@@ -14,36 +14,39 @@
 //     }
 // }
 
-pipeline {
 
+
+pipeline {
     agent any
 
     stages {
 
-        stage('Build Stage') {
-
+        stage('Clean') {
             steps {
-
-                sh 'npm install'
-
+                deleteDir()
             }
         }
-        stage('Deploy Stage') {
 
+        stage('Clone') {
             steps {
+                git branch: 'main',
+                url: 'https://github.com/Sushree-Madhusmita07/nodeProject.git'
+            }
+        }
 
+        stage('Install') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
                 sh '''
-
-                /usr/local/bin/pm2 delete myapp || true
-
-                /usr/local/bin/pm2 start index.js --name myapp
-                                /usr/local/bin/pm2 restart index.js --name myapp
-
-
-                /usr/local/bin/pm2 save
-
+                pm2 delete myApp || true
+                pm2 start index.js --name myApp
+                pm2 save
                 '''
-
             }
         }
     }
