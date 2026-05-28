@@ -17,36 +17,33 @@
 
 
 pipeline {
+
     agent any
 
     stages {
 
-        stage('Clean') {
-            steps {
-                deleteDir()
-            }
-        }
+        stage('Build Stage') {
 
-        stage('Clone') {
             steps {
-                git branch: 'main',
-                url: 'https://github.com/Sushree-Madhusmita07/nodeProject.git'
-            }
-        }
 
-        stage('Install') {
-            steps {
                 sh 'npm install'
+
             }
         }
+        stage('Deploy Stage') {
 
-        stage('Deploy') {
             steps {
+
                 sh '''
-                pm2 delete myApp || true
-                pm2 start index.js --name myApp
-                pm2 save
+
+                /usr/local/bin/pm2 delete myapp || true
+
+                /usr/local/bin/pm2 start index.js --name myapp
+
+                /usr/local/bin/pm2 save
+
                 '''
+
             }
         }
     }
