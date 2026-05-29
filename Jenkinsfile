@@ -42,10 +42,7 @@ pipeline {
 
                 /usr/local/bin/pm2 save
 
-                // cd /var/lib/jenkins/workspace/pipeline
-                // pm2 restart myApp || pm2 start index.js --name myApp
-
-                // pm2 save
+                
 
                 '''
 
