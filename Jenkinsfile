@@ -35,12 +35,12 @@ pipeline {
             steps {
 
                 sh '''
+/usr/local/bin/pm2 delete myapp || true
 
-        cd /var/lib/jenkins/workspace/firstPipeline
+//                 /usr/local/bin/pm2 start index.js --name myapp
 
-        pm2 restart myapp || pm2 start index.js --name myapp
-
-        pm2 save
+//                 /usr/local/bin/pm2 save
+    
                 
 
                 '''
