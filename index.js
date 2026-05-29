@@ -2,7 +2,7 @@ const http = require('http');
 
 const server = http.createServer((req, res) => {
 
-   res.write("Hello from Jenkins Auto Deployment 8");
+   res.write("Hello from Jenkins Auto Deployment 7");
 
    res.end();
 
